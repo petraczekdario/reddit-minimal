@@ -2,7 +2,6 @@
   "name": "reddit-minimal",
   "version": "0.1.0",
   "homepage": "https://petraczekdario.github.io/reddit-minimal",
-  "proxy": "https://www.reddit.com",
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
     "@testing-library/dom": "^10.4.1",

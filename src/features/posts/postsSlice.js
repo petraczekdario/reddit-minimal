@@ -6,7 +6,7 @@ export const loadPosts = createAsyncThunk(
   'posts/loadPosts', 
   async (subreddit = 'all', thunkAPI) => {
     // Basic API URL to fetch a subreddit's JSON feed
-    const url = `/r/${subreddit}/top.json`;
+    const url = `https://api.allorigins.win/get?url=${encodeURIComponent('https://www.reddit.com/r/all/top.json')}`;
     
     try {
       const response = await fetch(url);
@@ -17,10 +17,10 @@ export const loadPosts = createAsyncThunk(
         return thunkAPI.rejectWithValue(response.status);
       }
       
-      const json = await response.json();
-      
+      const proxyJson = await response.json();
+      const redditJson = JSON.parse(proxyJson.contents);
       // The API response is often nested, extract the array of posts
-      return json.data.children.map(child => child.data);
+      return redditJson.data.children.map(child => child.data);
 
     } catch (error) {
       // Handle network errors (e.g., connection issues)
