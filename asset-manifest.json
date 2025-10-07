@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/reddit-minimal/static/css/main.8f156120.css",
+    "main.js": "/reddit-minimal/static/js/main.6622fad8.js",
+    "static/media/reddit-minimal.png": "/reddit-minimal/static/media/reddit-minimal.bdec83b09c119f90167b.png",
+    "index.html": "/reddit-minimal/index.html",
+    "main.8f156120.css.map": "/reddit-minimal/static/css/main.8f156120.css.map",
+    "main.6622fad8.js.map": "/reddit-minimal/static/js/main.6622fad8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f156120.css",
+    "static/js/main.6622fad8.js"
+  ]
+}
