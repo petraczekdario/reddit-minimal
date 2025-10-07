@@ -1,36 +1,30 @@
 import React from 'react';
-// Removed FAKE_POSTS_DATA import as it is now in the slice
 import logo from './reddit-minimal.png';
 import './App.css';
-// We only need useSelector now, as we removed the dispatching logic
 import { useSelector } from 'react-redux';
-import { selectPosts, selectPostsStatus, selectPostsError } from './features/posts/postsSlice.js';
+import { selectPosts } from './features/posts/postsSlice.js';
 
 function App() {
-  // Removed useDispatch and useEffect since data is loaded synchronously via initial state
+  // Select only the posts array.
   const posts = useSelector(selectPosts);
-  const status = useSelector(selectPostsStatus);
-  const error = useSelector(selectPostsError);
 
-  // Since data is instant, we skip the 'loading' check.
-  // We keep the error check in case the mock data import failed for some reason.
-  if (error) {
-    return <div>Error: {error}</div>; 
-  }
+  // We are bypassing all error/status checks to force a render.
 
   return (
     <div className="App">
       <header className="App-header" style={{ marginBottom: '20px' }}>
         <img src={logo} className="App-logo" alt="logo" style={{ height: '40px' }} />
-        <h1 style={{ fontSize: '1.5rem' }}>Simple Reddit Feed (Mock Data)</h1>
+        <h1 style={{ fontSize: '1.5rem' }}>Simple Reddit Feed (Minimal Render)</h1>
       </header>
       
       <main className="posts-list" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 15px' }}>
-        {posts.length === 0 && status === 'succeeded' ? (
+        {/* If the posts array is completely empty, we display a debugging message. */}
+        {posts.length === 0 ? (
           <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
-            No posts found.
+            Posts array is empty. Please verify **src/components/fakeData.js** is correct.
           </div>
         ) : (
+          // Map and render the posts if the array is populated.
           posts.map((post) => (
             <article 
               key={post.id} 
@@ -49,12 +43,13 @@ function App() {
                 <span style={{ fontSize: '0.8rem', color: '#888' }}>{post.subreddit_name_prefixed}</span>
               </div>
               <p style={{ fontSize: '1rem', color: '#444', marginBottom: '10px' }}>
-                {post.selftext.substring(0, 100)}...
+                {post.content ? post.content.substring(0, 100) : 'No content'}...
               </p>
               <div className="post-footer" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: '#555' }}>
                 <span>Author: {post.author}</span>
-                <span>👍 {post.ups || 'N/A'} Upvotes</span>
-                <span>💬 {post.num_comments || 'N/A'} Comments</span>
+                <span>👍 {post.upvotes || 'N/A'} Upvotes</span>
+                {/* SAFE RENDER: We check the length of the comments array */}
+                <span>💬 {post.comments ? post.comments.length : 0} Comments</span> 
               </div>
             </article>
           ))

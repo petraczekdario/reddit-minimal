@@ -41,7 +41,10 @@ export const FAKE_POSTS_DATA = [
     upvotes: 8900,
     timestamp: Date.now() - (600 * 1000 * 10), // 10 minutes ago
     comments: [
-      { id: 6, user: "DeskObserver", text: "Looks clean! Which monitor model is that?" }
+      { id: 6, user: "DeskObserver", text: "Looks clean! Which monitor model is that?" },
+      { id: 7, user: "DaveMustaine", text: "What's yours is mine!" },
+      { id: 8, user: "CoreyTaylor", text: "Don't ecer judge me!!" },
+      { id: 9, user: "JamesHetfield", text: "Nothing Else Matters" }
     ],
     image: "https://placehold.co/600x400/64B5F6/ffffff?text=Minimal+Setup"
   }

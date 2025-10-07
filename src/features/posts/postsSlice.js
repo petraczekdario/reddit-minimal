@@ -1,7 +1,7 @@
 // src/features/posts/postsSlice.js
 
 import { createSlice } from "@reduxjs/toolkit";
-import { FAKE_POSTS_DATA } from "../../components/fakeData"; // Import the mock data
+import { FAKE_POSTS_DATA } from "../../components/fakeData.js"; // Import the mock data
 
 // 1. Define the initial state structure using the mock data
 const initialState = {
